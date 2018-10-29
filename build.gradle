@@ -1,0 +1,52 @@
+
+allprojects {
+    apply plugin: 'java'
+    apply plugin: 'eclipse'
+    apply plugin: 'idea'
+    /*apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'*/
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+    group = 'com.soecode'
+    version '1.0-SNAPSHOT'
+    buildscript {
+        dependencies {
+
+        }
+    }
+    repositories {
+        mavenLocal()
+        jcenter()
+        mavenCentral()
+
+        maven {
+            url 'http://mvnrepository.com/'
+        }
+    }
+
+    ext {
+        springBootVersion = '2.0.6.RELEASE'
+        compileJava.options.encoding = 'UTF-8'
+        compileTestJava.options.encoding = 'UTF-8'
+    }
+
+    eclipse{
+        project {
+            natures 'org.eclipse.wst.common.modulecore.ModuleCoreNature'
+        }
+    }
+
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
+    testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
+
+    compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.3.6'
+    compile group: 'org.apache.httpcomponents', name: 'httpmime', version: '4.3.6'
+    compile group: 'org.codehaus.jackson', name: 'jackson-mapper-asl', version: '1.9.13'
+    compile group: 'com.thoughtworks.xstream', name: 'xstream', version: '1.4.7'
+    compile group: 'commons-io', name: 'commons-io', version: '2.4'
+}
